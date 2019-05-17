@@ -1,0 +1,14 @@
+.planner-area {
+    width: 50%;
+    margin: 0 auto;
+}
+.addDestination {
+    border: dotted 2px #adadad; 
+    display: block;
+}
+.addDestination *{
+    margin: 35px 10px;
+}
+.planner-area form input {
+    margin: 15px 0px;
+}

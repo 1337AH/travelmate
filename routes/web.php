@@ -12,5 +12,11 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
+});
+Route::get('/tours', function () {
+    return view('tours');
+});
+Route::get('/planner', function () {
+    return view('planner');
 });
