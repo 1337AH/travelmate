@@ -27,6 +27,7 @@
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
                     <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/about')}}">About</a></li>
                     <li><a href="{{ url('/planner') }}">Trip Planner</a></li>
                     <li><a href="{{ url('tours') }}">Tours</a></li>
                     <li><a href="hotels.html">Hotels</a></li>
@@ -47,7 +48,7 @@
                             </li>					                		
                         </ul>
                     </li>					          					          		          
-                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="{{ url('/contact')}}">Contact</a></li>
                 </ul>
             </nav><!-- #nav-menu-container -->					      		  
         </div>

@@ -4,7 +4,7 @@
 
 
 @section('content')
-@extends('inc.pagesBanner')
+
 <!-- Start destinations Area -->
 <section class="destinations-area section-gap">
     <div class="container">
