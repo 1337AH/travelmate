@@ -4,14 +4,15 @@
 
 
 @section('content')
-@extends('inc.pagesBanner')
 <!-- Start destinations Area -->
 <div class="container">
 <section class="planner-area section-gap">
 <form class="form-wrap">
-    <input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">									
-    <input type="text" class="form-control" name="to" placeholder="To " onfocus="this.placeholder = ''" onblur="this.placeholder = 'To '">
-    <span class="addDestination"><span class="lnr lnr-plus-circle"></span>Add Another Destination</span>
+    <input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">
+    <div id="planner-form">									
+        <input type="text" class="form-control dest" name="destiantion1" placeholder="Destination #1 " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Destination #1'">
+    </div>
+    <span class="addDestination" onclick="addDestination()"><span class="lnr lnr-plus-circle"></span>Add Another Destination</span>
     <input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
     <input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
     <input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '">

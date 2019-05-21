@@ -25,10 +25,21 @@
 			@extends('inc.headerNav')
 			  
 			<!-- start banner Area -->
-			<!-- End banner Area -->	
-
-			@yield('content')
+			<section class="about-banner relative">
+                <div class="overlay overlay-bg"></div>
+                <div class="container">				
+                    <div class="row d-flex align-items-center justify-content-center">
+                        <div class="about-content col-lg-12">
+                            <h1 class="text-white">
+                                @yield('pageTitle')			
+                            </h1>	
+                            <p class="text-white link-nav"><a href="index.html">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="about.html"> About Us</a></p>
+                        </div>	
+                    </div>
+                </div>
+            </section>
 			
+			@yield('content')
 			<!-- start footer Area -->		
 			<footer class="footer-area section-gap">
 				<div class="container">
@@ -127,5 +138,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="{{asset("js/owl.carousel.min.js")}}"></script>							
 			<script src="{{asset("js/mail-script.js")}}"></script>	
 			<script src="{{asset("js/main.js")}}"></script>	
+			<script src="{{asset("js/custom.js")}}?<?php echo time(); ?>"></script>	
 		</body>
 	</html>

@@ -1,10 +1,9 @@
-@extends('inc.template')
+@extends('inc.homeTemplate')
 
 @section('pageTitle', 'Home')
 
 
 @section('content')
-@extends('inc.homeBanner')
 <!-- Start destinations Area -->
 <section class="destinations-area section-gap">
     <div class="container">
