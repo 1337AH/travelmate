@@ -23,3 +23,14 @@ Route::get('/planner', function () {
 Route::get('/trip', function () {
     return view('trip');
 });
+Route::get('/about',function(){
+    return view('about');
+});
+Route::get('/contact',function(){
+    return view('contact');
+});
+Route::get('/insurance',function(){
+    return view('insurance');
+});
+
+?>
