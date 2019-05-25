@@ -19,6 +19,7 @@
 			<link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}?<?php echo time(); ?>">				
 			<link rel="stylesheet" href="{{ asset('css/main.css') }}?<?php echo time(); ?>">
 			<link rel="stylesheet" href="{{ asset('css/custom.css') }}?<?php echo time(); ?>">
+			<link rel="stylesheet" href="{{ asset('css/easy-autocomplete.min.css') }}?<?php echo time(); ?>">
 		</head>
 		<body>	
 			
@@ -137,7 +138,9 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="{{asset("js/jquery.nice-select.min.js")}}"></script>					
 			<script src="{{asset("js/owl.carousel.min.js")}}"></script>							
 			<script src="{{asset("js/mail-script.js")}}"></script>	
-			<script src="{{asset("js/main.js")}}"></script>	
+			<script src="{{asset("js/main.js")}}"></script>
+			<script src="{{asset("js/jquery.easy-autocomplete.min.js")}}"></script>
 			<script src="{{asset("js/custom.js")}}?<?php echo time(); ?>"></script>	
+			
 		</body>
 	</html>

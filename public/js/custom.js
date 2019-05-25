@@ -7,5 +7,20 @@ function addDestination(){
     input.placeholder = "Destination #" + (count.length +1) ;
     input.classList.add("form-control");
     input.classList.add("dest");
+    input.classList.add("data-json");
     container.appendChild(input);
+    $(".data-json").easyAutocomplete(options);
 }
+var options = {
+    url: "http://localhost:8000/api/v1/city/index",
+
+    getValue: "name",
+
+    list: {
+        match: {
+            enabled: true
+        }
+    }
+};
+
+$(".data-json").easyAutocomplete(options);

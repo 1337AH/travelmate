@@ -20,3 +20,6 @@ Route::get('/tours', function () {
 Route::get('/planner', function () {
     return view('planner');
 });
+Route::get('/trip', function () {
+    return view('trip');
+});

@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}?<?php echo time(); ?>">				
         <link rel="stylesheet" href="{{ asset('css/main.css') }}?<?php echo time(); ?>">
         <link rel="stylesheet" href="{{ asset('css/custom.css') }}?<?php echo time(); ?>">
+        <link rel="stylesheet" href="{{ asset('css/easy-autocomplete.min.css') }}?<?php echo time(); ?>">
     </head>
     <body>	
 
@@ -48,13 +49,13 @@
                         <div class="tab-content" id="myTabContent">
                             <div class="tab-pane fade show active" id="holiday" role="tabpanel" aria-labelledby="holiday-tab">
                                 <form class="form-wrap">
-                                    <input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">									
-                                    <input type="text" class="form-control" name="to" placeholder="To " onfocus="this.placeholder = ''" onblur="this.placeholder = 'To '">
-                                    <input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '">
-                                    <input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '">
-                                    <input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '">
-                                    <input type="number" min="1" max="20" class="form-control" name="child" placeholder="Child " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '">							
-                                    <a href="#" class="primary-btn text-uppercase">Start Planning</a>									
+                                    <!--<input type="text" class="form-control" name="name" placeholder="From " onfocus="this.placeholder = ''" onblur="this.placeholder = 'From '">-->
+                                    <input type="text" class="form-control data-json" name="to" placeholder="Destination " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Destination '" id="toDest">
+                                    <input type="text" class="form-control date-picker" name="start" placeholder="Start " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Start '" id="startDate">
+                                    <input type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '" id="returnDate">
+                                    <input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '" id="adultNr">
+                                    <input type="number" min="1" max="20" class="form-control" name="child" placeholder="Child " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '" id="childNr">							
+                                    <a href="#" class="primary-btn text-uppercase" onclick="location.href='{{ asset('planner') }}?to='+ document.getElementById('toDest').value+'&startDate='+document.getElementById('startDate').value+'&returnDate='+document.getElementById('returnDate').value+'&adultNo='+document.getElementById('adultNr').value+'&childNo='+document.getElementById('childNr').value;">Start Planning</a>									
                                 </form>							  	
                             </div>
                             <div class="tab-pane fade" id="flight" role="tabpanel" aria-labelledby="flight-tab">
@@ -183,6 +184,7 @@
         <script src="{{asset("js/owl.carousel.min.js")}}"></script>							
         <script src="{{asset("js/mail-script.js")}}"></script>	
         <script src="{{asset("js/main.js")}}"></script>	
+        <script src="{{asset("js/jquery.easy-autocomplete.min.js")}}"></script>
         <script src="{{asset("js/custom.js")}}"></script>	
     </body>
 </html>
