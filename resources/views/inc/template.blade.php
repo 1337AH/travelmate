@@ -20,6 +20,9 @@
 			<link rel="stylesheet" href="{{ asset('css/main.css') }}?<?php echo time(); ?>">
 			<link rel="stylesheet" href="{{ asset('css/custom.css') }}?<?php echo time(); ?>">
 			<link rel="stylesheet" href="{{ asset('css/easy-autocomplete.min.css') }}?<?php echo time(); ?>">
+			<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+			<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
+			<link rel="stylesheet" href="{{ asset('css/style.css') }}?<?php echo time(); ?>">
 		</head>
 		<body>	
 			
@@ -142,6 +145,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="{{asset("js/main.js")}}"></script>
 			<script src="{{asset("js/jquery.easy-autocomplete.min.js")}}"></script>
 			<script src="{{asset("js/custom.js")}}?<?php echo time(); ?>"></script>	
-			
+			<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+      		<script src="{{asset("js/index.js")}}"></script>
 		</body>
 	</html>
