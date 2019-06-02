@@ -33,6 +33,7 @@ if(!empty($dest3)) $dests .= ' and ' . $dest3;
             @endforeach
         </div>
         @if(isset($places2))
+		<h1> {{ app('request')->input('destiantion2') }}</h1>
         @foreach($places2 as $place)
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="{{asset("img/d1.jpg")}}" alt="Card image cap">
@@ -45,6 +46,7 @@ if(!empty($dest3)) $dests .= ' and ' . $dest3;
         @endforeach
         @endif
         @if(isset($places3))
+		<h1> {{ app('request')->input('destiantion3') }}</h1>
         @foreach($places3 as $place)
         <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="{{asset("img/d2.jpg")}}" alt="Card image cap">

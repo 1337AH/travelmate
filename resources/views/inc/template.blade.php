@@ -1,26 +1,24 @@
 	<!DOCTYPE html>
 	<html>
 	<head>
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-		<meta charset="UTF-8">
-		<title>@yield('pageTitle') - TravelMate</title>
+		<head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta charset="UTF-8">
+        <title>@yield('pageTitle') - TravelMate</title>
 
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
-			<!--
-			CSS
-			============================================= -->
-			<link rel="stylesheet" href="{{ asset('css/linearicons.css') }}?<?php echo time(); ?>">
-			<link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}?<?php echo time(); ?>">
-			<link rel="stylesheet" href="{{ asset('css/app.css') }}?<?php echo time(); ?>">
-			<link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}?<?php echo time(); ?>">
-			<link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}?<?php echo time(); ?>">				
-			<link rel="stylesheet" href="{{ asset('css/nice-select.css') }}?<?php echo time(); ?>">							
-			<link rel="stylesheet" href="{{ asset('css/animate.min.css') }}?<?php echo time(); ?>">
-			<link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}?<?php echo time(); ?>">				
-			<link rel="stylesheet" href="{{ asset('css/main.css') }}?<?php echo time(); ?>">
-			<link rel="stylesheet" href="{{ asset('css/custom.css') }}?<?php echo time(); ?>">
-			<link rel="stylesheet" href="{{ asset('css/easy-autocomplete.min.css') }}?<?php echo time(); ?>">
-		</head>
+        <link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
+        <link rel="stylesheet" href="{{ asset('css/linearicons.css') }}?<?php echo time(); ?>">
+        <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}?<?php echo time(); ?>">
+        <link rel="stylesheet" href="{{ asset('css/app.css') }}?<?php echo time(); ?>">
+        <link rel="stylesheet" href="{{ asset('css/magnific-popup.css') }}?<?php echo time(); ?>">
+        <link rel="stylesheet" href="{{ asset('css/jquery-ui.css') }}?<?php echo time(); ?>">				
+        <link rel="stylesheet" href="{{ asset('css/nice-select.css') }}?<?php echo time(); ?>">							
+        <link rel="stylesheet" href="{{ asset('css/animate.min.css') }}?<?php echo time(); ?>">
+        <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}?<?php echo time(); ?>">				
+        <link rel="stylesheet" href="{{ asset('css/main.css') }}?<?php echo time(); ?>">
+        <link rel="stylesheet" href="{{ asset('css/custom.css') }}?<?php echo time(); ?>">
+        <link rel="stylesheet" href="{{ asset('css/easy-autocomplete.min.css') }}?<?php echo time(); ?>">
+    </head>
 		<body>	
 			
 			@extends('inc.headerNav')
@@ -142,6 +140,5 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="{{asset("js/main.js")}}"></script>
 			<script src="{{asset("js/jquery.easy-autocomplete.min.js")}}"></script>
 			<script src="{{asset("js/custom.js")}}?<?php echo time(); ?>"></script>	
-			
 		</body>
 	</html>
