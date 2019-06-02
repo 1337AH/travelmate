@@ -20,8 +20,15 @@ Route::get('/tours', function () {
 Route::get('/planner', function () {
     return view('planner');
 });
-Route::get('/trip', function () {
-    return view('trip');
+$router->group(['prefix' => 'trip'], function($app)
+{
+	$app->get('','TripController@tripPlannerByCity');
+	//$app->post('add','PlacesController@create');
+	//$app->put('edit/{id}','PlacesController@update');
+	//$app->delete('delete/{id}','PlacesController@destroy');
+	//$app->get('index','PlacesController@index');
+    //$app->get('bycityid/{id}','PlacesController@getPlacesByCityId');
+    //$app->get('bycityname/{name}','PlacesController@getPlacesByCityName');
 });
 Route::get('/about',function(){
     return view('about');
@@ -32,5 +39,4 @@ Route::get('/contact',function(){
 Route::get('/insurance',function(){
     return view('insurance');
 });
-
 ?>
