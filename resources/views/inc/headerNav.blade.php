@@ -22,11 +22,11 @@
     <div class="container main-menu">
         <div class="row align-items-center justify-content-between d-flex">
             <div id="logo">
-                <a href="index.html"><img src="{{asset("img/logo.png")}}" alt="" title="" /></a>
+                <a href="{{ url('/') }}"><img src="{{asset("img/logo.png")}}" alt="" title="" /></a>
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="{{ url('/') }}">Home</a></li>
+                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
                     <li><a href="{{ url('/about')}}">About</a></li>
                     <li><a href="{{ url('/planner') }}">Trip Planner</a></li>
                     <li><a href="{{ url('/tours') }}">Tours</a></li>
@@ -38,7 +38,15 @@
                             <li><a href="blog-single.html">Blog Single</a></li>
                         </ul>
                     </li>	
-                    <li><a href="{{ url('/login') }}">Login</a></li>			          					          		          
+                    @if (Auth::guard('web')->check( )) 
+                    <li><a href="{{ url('/users/logout') }}">Logout</a></li>
+                    <script> alert("User is logged in")</script>			          					          		          
+                    @elseif (Auth::guard('admin')->check( ))
+                    <li><a href="{{ url('/logout') }}">Logout</a></li>
+                    <script> alert("Admin is logged in")</script>
+                    @else
+                    <li><a href="{{ url('/login') }}">Login</a></li>
+                    @endif
                 </ul>
             </nav><!-- #nav-menu-container -->					      		  
         </div>

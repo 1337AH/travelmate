@@ -1,7 +1,9 @@
 <?php
 
+
 use app\User;
 use Illuminate\Database\Seeder;
+use database\seeds\UserTableSeeder;
 use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
@@ -13,10 +15,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         Model::unguard();
-
-         $this->call('UserTableSeeder');
-
-         Model::reguard();
+         $this->call('UserTableSeeder::class');
     }
 }
