@@ -12,10 +12,8 @@
 */
 
 Route::get('/', function () {
-     return view('home1');
+     return view('home');
 });
-
-
 
 Route::get('/tours', function () {
     return view('tours');
@@ -43,11 +41,23 @@ Route::get('/contact',function(){
     return view('contact');
 });
 
+Route::get('/message','ContactMessageController@index');
+ 
+Route::get('/message/create','ContactMessageController@create');
+ 
+Route::post('/messageStore','ContactMessageController@storeMessage');
+
 Route::get('/insurance',function(){
     return view('insurance');
 });
 
+Route::get('/dashboard',function(){
+    return view('dashboard');
+});
 
+Route::get('/profile',function(){
+    return view('dashboard.profile');
+});
 
 // Route::get('/login',function(){
 //     return view('login');
@@ -80,7 +90,7 @@ Route::get('/home', 'HomeController@index');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 Route::prefix('admin')->group(function() {
-  Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
+  Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login'); 
   Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
   Route::get('/', 'AdminController@index')->name('admin.dashboard');
   Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout');

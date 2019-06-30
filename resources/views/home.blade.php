@@ -24,7 +24,7 @@
                     <div class="details">
                         <h4>Holiday Sea beach Blue Ocean</h4>
                         <p>
-                            United staes of America
+                            United states of America
                         </p>
                         <ul class="package-list">
                             <li class="d-flex justify-content-between align-items-center">
@@ -199,7 +199,7 @@
                     <div class="details">
                         <h4>Holiday Sea beach Blue Ocean</h4>
                         <p>
-                            United staes of America
+                            United States of America
                         </p>
                         <ul class="package-list">
                             <li class="d-flex justify-content-between align-items-center">
