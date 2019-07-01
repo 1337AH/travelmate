@@ -8,7 +8,6 @@ use Response;
 use Input;
 use App\Tour;
 use DB;
-use Illuminate\Support\Facades\DB;
 
 class TripController extends Controller
 {

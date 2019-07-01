@@ -221,7 +221,7 @@ if($dest3 != '') $dests .= ' and ' . $dest3;
      @endphp
       <a href="#home" class="active" id="saveTour">Save</a>
     @else
-      <a href="#home" class="active" onclick="console.log('Logout')">Save</a>
+      <a href="#home" class="active" onclick="alert('You have to be logged in !')">Save</a>
     @endif
     <a href="#home" onMouseOver="this.style.filter='invert(0%)'" onMouseOut="this.style.filter='invert(100%)'" style="filter: invert(100%)"><img style="width:20px;"  src="{{ asset('img/print.png')}}" alt=""></a>
     <div id="cd-cart-trigger" ><a class="cd-img-replace" href="#0">Plan</a></div>
@@ -237,7 +237,7 @@ if($dest3 != '') $dests .= ' and ' . $dest3;
     var url = new URL(window.location.href);
     var startD = url.searchParams.get("start"); 
     var endD = url.searchParams.get("return");  
-    myObj.tour.push({"start_at": startD ,"end_at": endD, "user_id": @php echo $user->id @endphp});    
+    myObj.tour.push({"start_at": startD ,"end_at": endD, "user_id": "1"});    
     console.log(myObj);
     function placeAdded(id){
 
