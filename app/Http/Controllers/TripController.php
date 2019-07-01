@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TripController extends Controller
 {
@@ -42,5 +43,12 @@ class TripController extends Controller
         }
         
         return $returnView;
+    }
+
+    public function index(){
+        $trips = DB::table('trip')->get();
+        $users = DB::table('users')->get();
+
+        return view('dashboard.trips' , ['trips'=> $trips , 'users'=>$users]);
     }
 }
