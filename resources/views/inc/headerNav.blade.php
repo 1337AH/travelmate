@@ -39,12 +39,15 @@
                         </ul>
                     </li>	
                     @if (Auth::guard('web')->check( )) 
-                    <li><a href="{{ url('/users/logout') }}">Logout</a></li>		          					          		          
+                        <li><a href="{{ url('/users/logout') }}">Logout</a></li>	          					          		          
                     @elseif (Auth::guard('admin')->check( ))
                     <li><a href="{{ url('/logout') }}">Logout</a></li>
-                    <script> alert("Admin is logged in")</script>
                     @else
                     <li><a href="{{ url('/login') }}">Login</a></li>
+                    <script>
+                       var x = document.querySelector(".nav-menu li");
+                       x.remove(x.childNodes[0]);
+                    </script>
                     @endif
                 </ul>
             </nav><!-- #nav-menu-container -->					      		  

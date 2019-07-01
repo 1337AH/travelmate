@@ -21,9 +21,20 @@ Route::get('/tours', function () {
     return view('tours');
 });
 
+Route::get('/trips',function(){
+    return view('dashboard.trips');
+});
+
 Route::get('/planner', function () {
     return view('planner');
 });
+
+Route::get('/profile',function(){
+    return view('dashboard.profile');
+});
+
+Route::get('/trips' , 'TripController@index');
+
 $router->group(['prefix' => 'trip'], function($app)
 {
 	$app->get('','TripController@tripPlannerByCity');
@@ -44,11 +55,15 @@ Route::get('/contact',function(){
     return view('contact');
 });
 
+
+
 Route::get('/message','ContactMessageController@index');
  
 Route::get('/message/create','ContactMessageController@create');
  
 Route::post('/messageStore','ContactMessageController@storeMessage');
+
+Route::get('/profile', 'ProfileController@index');
 
 Route::get('/insurance',function(){
     return view('insurance');
@@ -58,9 +73,7 @@ Route::get('/dashboard',function(){
     return view('dashboard');
 });
 
-Route::get('/profile',function(){
-    return view('dashboard.profile');
-});
+
 
 // Route::get('/login',function(){
 //     return view('login');

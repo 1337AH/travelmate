@@ -8,6 +8,7 @@ use Response;
 use Input;
 use App\Tour;
 use DB;
+use Illuminate\Support\Facades\DB;
 
 class TripController extends Controller
 {
@@ -110,5 +111,12 @@ class TripController extends Controller
      }
     public function view(){
         return view('trip2');
+    }
+
+    public function index(){
+        $trips = DB::table('trip')->get();
+        $users = DB::table('users')->get();
+
+        return view('dashboard.trips' , ['trips'=> $trips , 'users'=>$users]);
     }
 }
