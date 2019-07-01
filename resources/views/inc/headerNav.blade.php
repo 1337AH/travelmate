@@ -26,7 +26,7 @@
             </div>
             <nav id="nav-menu-container">
                 <ul class="nav-menu">
-                    <li><a href="{{ url('/dashboard') }}">Dashboard</a></li>
+                    <li><a href="{{ url('/') }}">Home</a></li>
                     <li><a href="{{ url('/about')}}">About</a></li>
                     <li><a href="{{ url('/planner') }}">Trip Planner</a></li>
                     <li><a href="{{ url('/tours') }}">Tours</a></li>
@@ -39,8 +39,7 @@
                         </ul>
                     </li>	
                     @if (Auth::guard('web')->check( )) 
-                    <li><a href="{{ url('/users/logout') }}">Logout</a></li>
-                    <script> alert("User is logged in")</script>			          					          		          
+                    <li><a href="{{ url('/users/logout') }}">Logout</a></li>		          					          		          
                     @elseif (Auth::guard('admin')->check( ))
                     <li><a href="{{ url('/logout') }}">Logout</a></li>
                     <script> alert("Admin is logged in")</script>

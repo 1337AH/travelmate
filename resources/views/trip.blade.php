@@ -1,6 +1,8 @@
 @extends('inc.template')
 
 @php 
+$user = "";
+$counterCheck = 0;
 $nrOfDest = count($_GET)-4;
 $query = @unserialize (file_get_contents('http://ip-api.com/php/'));
 $start = new DateTime(app('request')->input('start'));
@@ -9,9 +11,9 @@ $diff = $end->diff($start)->format("%a");
 $dests = app('request')->input('destiantion1');
 $dest2 = app('request')->input('destiantion2');
 $dest3 = app('request')->input('destiantion3');
-if(!empty($dest2)){
+if($dest2 != ''){
 $dests .= ', ' . $dest2;
-if(!empty($dest3)) $dests .= ' and ' . $dest3;
+if($dest3 != '') $dests .= ' and ' . $dest3;
 }
 @endphp
 
@@ -21,28 +23,27 @@ if(!empty($dest3)) $dests .= ' and ' . $dest3;
 @section('content')
 <!-- Start destinations Area -->
 <div class="container">
-    <div id="cd-cart-trigger"><a class="cd-img-replace" href="#0">Cart</a></div>
+
 
     <div id="cd-shadow-layer"></div>
 
     <div id="cd-cart">
-       @for($i = 1; $i <= $nrOfDest; $i++ )
-        <h2>{{ app('request')->input('destiantion' . $i) }}</h2>
-        <ul class="cd-cart-items" id="{{ app('request')->input('destiantion' . $i) }}">
+        <h2>Places</h2>
+        <ul class="cd-cart-items" id="placeList">
             <li>
-                <span class="cd-qty">1x</span> Product Name
-                <div class="cd-price">$9.99</div>
-                <a href="#0" class="cd-item-remove cd-img-replace"></a>
+                <span class="cd-qty">Please add places you want to visit</span>
             </li>
         </ul> <!-- cd-cart-items -->
-        @endfor
-        <div class="cd-cart-total">
-            <p>Total <span>$39.96</span></p>
-        </div> <!-- cd-cart-total -->
+        <h2>Hotel</h2>
+        <ul class="cd-cart-items" id="placeList">
+            <li>
+                <span class="cd-qty">Please add the hotels you're gonna stay during the trip</span>
+            </li>
+        </ul> 
 
-        <a href="#0" class="checkout-btn">Checkout</a>
+        <a href="#0" class="checkout-btn">Save</a>
 
-        <p class="cd-go-to-cart"><a href="#0">Go to cart page</a></p>
+        <p class="cd-go-to-cart"><a href="#0">Go to your saved trips</a></p>
     </div> <!-- cd-cart -->
     <section class="section-gap">
         <ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -76,7 +77,7 @@ if(!empty($dest3)) $dests .= ' and ' . $dest3;
                     </li>
 
                     @for($i=1; $i <= $nrOfDest; $i++)
-                    <li class="timeline-inverted">
+                                              <li class="timeline-inverted">
                     <div class="timeline-badge warning"><i class="glyphicon glyphicon-credit-card">{{ $i }}</i></div>
                     <div class="timeline-panel">
                         <div class="timeline-heading">
@@ -126,7 +127,23 @@ if(!empty($dest3)) $dests .= ' and ' . $dest3;
                 </li>
                 </ul>
         </div>
+
         <div class="tab-pane fade" id="places" role="tabpanel" aria-labelledby="places-tab">
+            <div class="row">
+                <div class="tabInfoDiv">
+                    <form>
+                        <h3>ACTIVITIES</h3>
+                        @foreach($typePlaces as $type)
+                        <input type="checkbox" id="{{ $type["name"] }}" value="{{ $type["name"]}}">{{ $type["name"]}}<br>
+                        @endforeach
+                    </form>
+                </div>
+                <div class="tabInfoDiv">
+                    <h3>Price <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;"></h3>
+                    <label for="amount">Price range:</label>
+                    <div id="slider-range"></div>
+                </div>
+            </div>
             <div class="row">
                 <div class="card justify-content-center text-center" style="width: 17rem;">
                     <div class="city-card"></div>
@@ -138,7 +155,7 @@ if(!empty($dest3)) $dests .= ' and ' . $dest3;
                 @foreach($places1 as $place)
                 <div class="card justify-content-center" style="width: 17rem;" id="{{$place["id"]}}">
                     <div class="overlay"></div>
-                    <div class="button"><a href="javascript:void(0);" onclick="placeAdded({{$place["id"]}})"> ADD </a></div>
+                    <div class="button"><a href="javascript:void(0);" onclick="placeAdded({{$place["id"]}})" id="{{$place["id"]}}"> ADD </a></div>
                     <img class="card-img-top" src="{{asset("img/d2.jpg")}}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{$place["name"]}}</h5>
@@ -156,9 +173,9 @@ if(!empty($dest3)) $dests .= ' and ' . $dest3;
                     </div>
                 </div>
                 @foreach($places2 as $place)
-                <div class="card justify-content-center" style="width: 17rem;">
+                <div class="card justify-content-center" style="width: 17rem;" id="{{$place["id"]}}">
                     <div class="overlay"></div>
-                    <div class="button"><a href="#"> ADD </a></div>
+                    <div class="button"><a href="javascript:void(0);" onclick="placeAdded({{$place["id"]}})" id="{{$place["id"]}}"> ADD </a></div>
                     <img class="card-img-top" src="{{asset("img/d1.jpg")}}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">{{$place["name"]}}</h5>
@@ -193,7 +210,92 @@ if(!empty($dest3)) $dests .= ' and ' . $dest3;
         </div>
         <div class="tab-pane fade" id="hotels" role="tabpanel" aria-labelledby="hotels-tab">Hotels</div>
         </div>
+    <!--<button id="go">Save</button>
+<input type="text" class="tick_name">-->
     </section>
 </div>
+<div class="saveNav">
+    @if (Auth::check())
+     @php
+      $user = Auth::user();
+     @endphp
+      <a href="#home" class="active" id="saveTour">Save</a>
+    @else
+      <a href="#home" class="active" onclick="console.log('Logout')">Save</a>
+    @endif
+    <a href="#home" onMouseOver="this.style.filter='invert(0%)'" onMouseOut="this.style.filter='invert(100%)'" style="filter: invert(100%)"><img style="width:20px;"  src="{{ asset('img/print.png')}}" alt=""></a>
+    <div id="cd-cart-trigger" ><a class="cd-img-replace" href="#0">Plan</a></div>
+</div>
+<script>
+    var myObj = {
+        "tour":[],
+        "places": []
+    };
+    var placeList = {
+        "places": []
+    };
+    var url = new URL(window.location.href);
+    var startD = url.searchParams.get("start"); 
+    var endD = url.searchParams.get("return");  
+    myObj.tour.push({"start_at": startD ,"end_at": endD, "user_id": @php echo $user->id @endphp});    
+    console.log(myObj);
+    function placeAdded(id){
+
+        var container = document.getElementById(id);
+        var count = container.getElementsByClassName('placeAdded');
+        if( count.length == 1){
+            var addOverlay = container.getElementsByClassName('overlay')[0].classList.remove("placeAdded");
+            var buttonOpa = container.getElementsByClassName('button')[0].removeAttribute("style");
+            var buttonRemoveText = container.getElementsByClassName('button')[0].firstChild.innerHTML = 'Add';
+            var removeId = id;
+            var items=myObj.places;
+            var i=items.length;
+            while (i--) {
+                if(items[i].place_id == removeId){
+                    items.splice(i,1);
+                }
+            }
+            console.log(myObj);
+            var findPlaceName = container.getElementsByClassName('card-title')[0].innerHTML;
+            var items=placeList.places;
+            var i=items.length;
+            while (i--) {
+                if(items[i].name == findPlaceName){
+                    items.splice(i,1);
+                }
+            }
+            var inr;
+            var findPlacePlan = document.getElementById('placeList');
+            findPlacePlan.innerHTML = "";
+            for (inr = 0; inr < placeList.places.length; inr++) { 
+                findPlacePlan.innerHTML += "<li> "
+                                        + placeList.places[inr].name
+                                        + "<div class=\"cd-price\">"+ placeList.places[inr].address +"</div>"
+                                        + "<a href=\"#0\" class=\"cd-item-remove cd-img-replace\"></a></li>";
+            }
+            if(placeList.places.length == 0){
+                findPlacePlan.innerHTML += "<li><span class=\"cd-qty\">Please add places you want to visit</span></li>"
+            }
+        }else {
+            var addOverlay = container.getElementsByClassName('overlay')[0].classList.add("placeAdded");
+            var buttonOpa = container.getElementsByClassName('button')[0].setAttribute("style", "opacity: 1");
+            var buttonRemoveText = container.getElementsByClassName('button')[0].firstChild.innerHTML = 'Remove';
+            myObj.places.push({"place_id": id,"tour_id": "4"});
+            var findPlaceName = container.getElementsByClassName('card-title')[0].innerHTML;
+            var findPlaceAdress = container.getElementsByClassName('text-muted')[0].innerHTML;
+            placeList.places.push({"name": findPlaceName, "address": findPlaceAdress});
+            var inr;
+            var findPlacePlan = document.getElementById('placeList');
+            findPlacePlan.innerHTML = "";
+            for (inr = 0; inr < placeList.places.length; inr++) { 
+                findPlacePlan.innerHTML += "<li> "
+                                        + placeList.places[inr].name
+                                        + "<div class=\"cd-price\">"+ placeList.places[inr].address +"</div>"
+                                        + "<a href=\"#0\" class=\"cd-item-remove cd-img-replace\"></a></li>";
+            }
+        }
+    }
+
+</script>
 <!-- End destinations Area -->
 @endsection

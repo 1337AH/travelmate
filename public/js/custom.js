@@ -13,40 +13,87 @@ function addDestination(){
         $(".data-json").easyAutocomplete(options);
     }
 }
-var sitePlaces = {};
-var places = [];
-var tour = [];
-sitePlaces.tour = tour;
-sitePlaces.places = places;
-var firstName = "John";
-var lastName = "Smith";
-var place = {
-  "firstName": firstName,
-  "lastName": lastName
-}
-sitePlaces.places.push(place);
-sitePlaces.places.push(place);
-
-console.log(sitePlaces.places[0]);
-console.log(JSON.stringify(sitePlaces));
 var url = new URL(window.location.href);
 var startD = url.searchParams.get("start");
-console.log(c);
+var endD = url.searchParams.get("return");
+$( function() {
+    $( "#slider-range" ).slider({
+        range: true,
+        min: 0,
+        max: 500,
+        values: [ 75, 300 ],
+        slide: function( event, ui ) {
+            $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+        }
+    });
+    $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+                       " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+} );
 
-function placeAdded(id){
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-    var container = document.getElementById(id);
-    var count = container.getElementsByClassName('placeAdded');
-    if( count.length == 1){
-        var addOverlay = container.getElementsByClassName('overlay')[0].classList.remove("placeAdded");
-        var buttonOpa = container.getElementsByClassName('button')[0].removeAttribute("style");
-        var buttonRemoveText = container.getElementsByClassName('button')[0].firstChild.innerHTML = 'Add';
-    }else {
-        var addOverlay = container.getElementsByClassName('overlay')[0].classList.add("placeAdded");
-        var buttonOpa = container.getElementsByClassName('button')[0].setAttribute("style", "opacity: 1");
-        var buttonRemoveText = container.getElementsByClassName('button')[0].firstChild.innerHTML = 'Remove';
+    $('#saveTour').on("click",function(){
+        var datatab = myObj.places;
+        if(datatab.length != 0){
+            $.ajax({
+                url: 'trip',
+                type: 'POST',
+                data: {start_at : startD , end_at: endD, user_id: "1"},
+                dataType: 'json',
+                success: function(info){
+                    var tourId = info;
+                    for(var i = 0; i < datatab.length; i++){
+                        $.ajax({
+                            url: 'tripPlaces',
+                            type: 'POST',
+                            data: {place_id : datatab[i].place_id , tour_id: tourId},
+                            dataType: 'json',
+                            success: function(info){
+
+                            }
+
+                        });
+                    }
+                    window.location.href = "http://localhost:100/travelmate/public/dashboard";
+                }
+
+            });
+        }else {
+            alert('Please add places you want to visit');
+        }
+
+    });
+
+});
+$('#Nature').change(function () {
+    if ($('#Nature').is(':checked')) {
+        let d1 = searchParams.get('destiantion1');
+        let d2 = searchParams.get('destiantion2');
+        let d3 = searchParams.get('destiantion3');
+        $.ajax({
+            url: 'trip/filter?d1=' + d1 + '&d2=' + d2 + '&d3='+ d3,
+            type: 'GET',
+            dataType: "json",
+            success: function(data){
+                console.log(data);
+                jQuery.each(data.results, function(i, val) {
+                    // here you can do your magic
+                    $(".places123").append(document.createTextNode(val.term));
+                    $(".places123").append(document.createTextNode(val.count));
+                });
+            }
+
+        });
     }
-}
+});
+let searchParams = new URLSearchParams(window.location.search);
+let param = searchParams.get('destiantion1');
+console.log(param);
 var options = {
     url: "http://localhost:8000/api/v1/city/index",
 
