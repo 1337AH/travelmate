@@ -10,28 +10,31 @@ class ContactMessageController extends Controller
 
     public function index()
     {
-        $messages = Message::all();
 
-        return view('message.index', compact('messages'));
     }
 
     public function create()
     {
-        return view('message.create');
+        return view('contact');
     }
 
-    public function storeMessage()
+    public function store(Request $request)
     {
-        $message = new Message();
+        $this->validate($request,[
+            'name' =>  'required',
+            'email' => 'required',
+            'message' => 'required'
+        ]);
 
-        $message->id = request('id');
-        $message->name = request('name');
-        $message->email = request('email');
-        $message->subject = request('subject');
-        $message->message = request('message');
-
+        $message = new Message([
+            'name' => $request->get('name'),
+            'email' => $request->get('email'),
+            'subject' => $request->get('subject'),
+            'message' => $request->get('message')
+        ]);
+        
         $message->save();
         
-        return redirect('/message');
+        return redirect('/contact');
     }
 }
