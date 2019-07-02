@@ -267,6 +267,62 @@
         right: auto;
     }
 }
+.saveNav {
+  overflow: hidden;
+  background-color: #333;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+    z-index: 9999999;
+}
+
+.saveNav a {
+  float: right;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.saveNav a:hover {
+  background: #f1f1f1;
+  color: black;
+}
+
+.saveNav a.active {
+  background-color: #f8b600;
+  color: white;
+}
+.save nav a:hover img{
+    filter: invert(100%);
+}
+.tabInfoDiv {
+    border: 1px solid #e6e6e6;
+    float: left;
+    padding: 20px;
+    min-width: 200px;
+    max-height: 285px;
+    margin-bottom: 10px;
+    margin-right: 20px;
+    display: inline;
+    background: #f8faff !important;
+}
+.tabInfoDiv h3{
+    font-size: 18px;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem !important;
+    line-height: 1.5;
+    color: #000000;
+    font-weight: 400;
+}
+.tabInfoDiv h3 input {
+   background: none;
+}
+.tabInfoDiv form input {
+    margin: 10px 5px;
+}
 /* -------------------------------- 
 
 sidebar 
@@ -280,7 +336,6 @@ body.overflow-hidden {
 .cd-img-replace {
   /* replace text with a background-image */
   display: inline-block;
-  text-indent: 100%;
   white-space: nowrap;
 }
 #cd-cart {

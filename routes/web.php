@@ -11,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::post('trip','TripController@store');
+Route::post('tripPlaces','TripController@storePlaces');
 
 Route::get('/', function () {
      return view('home');
@@ -37,6 +39,7 @@ Route::get('/trips' , 'TripController@index');
 $router->group(['prefix' => 'trip'], function($app)
 {
 	$app->get('','TripController@tripPlannerByCity');
+    $app->get('filter','TripController@filter');
 	//$app->post('add','PlacesController@create');
 	//$app->put('edit/{id}','PlacesController@update');
 	//$app->delete('delete/{id}','PlacesController@destroy');
@@ -95,7 +98,7 @@ Route::get('/dashboard',function(){
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index');
+//Route::get('/home', 'HomeController@index');
 Route::get('/users/logout', 'Auth\LoginController@userLogout')->name('user.logout');
 
 Route::prefix('admin')->group(function() {
