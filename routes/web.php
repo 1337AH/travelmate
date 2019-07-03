@@ -1,4 +1,5 @@
 <?php
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,17 +53,12 @@ Route::get('/about',function(){
     return view('about');
 });
 
+
+Route::resource('/contact', 'ContactMessageController');
+
 Route::get('/contact',function(){
     return view('contact');
 });
-
-
-
-Route::get('/message','ContactMessageController@index');
- 
-Route::get('/message/create','ContactMessageController@create');
- 
-Route::post('/messageStore','ContactMessageController@storeMessage');
 
 Route::get('/profile', 'ProfileController@index');
 

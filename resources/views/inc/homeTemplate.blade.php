@@ -183,7 +183,7 @@
         <script src="{{asset("js/jquery.magnific-popup.min.js")}}"></script>						
         <script src="{{asset("js/jquery.nice-select.min.js")}}"></script>					
         <script src="{{asset("js/owl.carousel.min.js")}}"></script>							
-        <script src="{{asset("js/mail-script.js")}}"></script>	
+        {{-- <script src="{{asset("js/mail-script.js")}}"></script>	 --}}
         <script src="{{asset("js/main.js")}}"></script>	
         <script src="{{asset("js/jquery.easy-autocomplete.min.js")}}"></script>
         <script src="{{asset("js/custom.js")}}"></script>	
