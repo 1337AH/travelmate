@@ -34,6 +34,7 @@ Route::get('/profile',function(){
 });
 
 Route::get('/trips' , 'TripController@index');
+Route::get('/trips/{id}' , 'TripController@show');
 
 $router->group(['prefix' => 'trip'], function($app)
 {

@@ -113,9 +113,21 @@ class TripController extends Controller
     }
 
     public function index(){
-        $trips = DB::table('trip')->get();
-        $users = DB::table('users')->get();
-
-        return view('dashboard.trips' , ['trips'=> $trips , 'users'=>$users]);
+        $trips = DB::table('tour')->get();
+         $jsonDest3 = json_decode($trips, true);
+        return view('dashboard.trips')->with('trips', $jsonDest3);
+    }
+    public function show($id)
+    {
+        $places = DB::table('places_visited')->where("tour_id",$id)->pluck('place_id')->all();
+        $trips = DB::table('tour')->where("id",$id)->get();
+        $jsonDest = json_encode($places, true);
+        $json = json_decode($trips, true);
+        $idOfPlaces = print_r($jsonDest,true);
+        $typePlaces = @file_get_contents("http://localhost:8000/api/v1/places/index/");
+        $typePlaces = json_decode($typePlaces, true);
+        $laravelArray = collect($typePlaces);
+        $filtered = $laravelArray->where('id')->all();
+        return view('dashboard.singleTrip')->with('trip', $json)->with('places', $filtered);
     }
 }

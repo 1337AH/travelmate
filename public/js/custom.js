@@ -59,7 +59,7 @@ $(document).ready(function() {
 
                         });
                     }
-                    window.location.href = "http://localhost:100/travelmate/public/dashboard";
+                    window.location.href = "http://localhost:100/travelmate/public/trips";
                 }
 
             });

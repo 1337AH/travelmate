@@ -16,7 +16,7 @@
     <input autocomplete="off" type="text" class="form-control date-picker" name="return" placeholder="Return " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Return '" value="{{ app('request')->input('returnDate') }}">
     <input type="number" min="1" max="20" class="form-control" name="adults" placeholder="Adults " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Adults '" value="{{ app('request')->input('adultNo') }}">
     <input type="number" min="1" max="20" class="form-control" name="child" placeholder="Child " onfocus="this.placeholder = ''" onblur="this.placeholder = 'Child '" value="{{ app('request')->input('childNo') }}">							
-    <button class="primary-btn text-uppercase" >Next</button>									
+    <button class="primary-btn text-uppercase" value="NextTrip">Next</button>									
 </form>
     </section>
 </div>
